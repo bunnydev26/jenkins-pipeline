@@ -13,13 +13,14 @@ def call(gitUsername, repositoryName, dockerUsername) {
             Date date = new Date()
             // Populating the image version.
             imageVersion = date.format("yyddMMHHmm");
+            // Docker image version
+            dockerImageName = "${dockerUsername}/${repositoryName}:${imageVersion}";
         }
     }
     
     stage('Build and Test') {
         node('master') {
             // Building the docker image.
-            dockerImageName = "${dockerUsername}/${repositoryName}:${imageVersion}";
             sh "echo 'docker build -t ${dockerImageName} .'";
             
             // Runing the test cases on the docker image if it is applicable.
@@ -34,7 +35,7 @@ def call(gitUsername, repositoryName, dockerUsername) {
     stage('Deploy on Staging') {
         node('master') {
             sh "echo 'Deploy on staging'";
-            sh "ls ~/kube_renderer"
+            sh "python ~/kube_renderer/kube_renderer.py --instance_status staging --docker_image_version ${dockerImageName} --base_dir $(pwd)"
         }
     }
     
