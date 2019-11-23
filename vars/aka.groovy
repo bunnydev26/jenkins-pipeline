@@ -30,4 +30,28 @@ def call(gitUsername, repositoryName, dockerUsername) {
             
         }
     }
+    
+    stage('Deploy on Staging') {
+        node('master') {
+            sh "echo 'Deploy on staging'";
+        }
+    }
+    
+    stage('Confirm to Deploy O production') {
+        def userInput = input(
+            id: 'userInput', message: 'This is PRODUCTION!', parameters: [
+            [$class: 'BooleanParameterDefinition', defaultValue: false, description: '', name: 'Please confirm you sure to proceed']
+        ])
+
+        if(!userInput) {
+            error "Build was canceled";
+        }
+    }
+    
+    stage('Deploy on Production') {
+        node('master') {
+            
+            sh "echo 'Deploy on staging'";
+        }
+    }
 }
