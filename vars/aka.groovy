@@ -15,7 +15,7 @@ def call(gitUsername, repositoryName, dockerUsername) {
             imageVersion = date.format("yyddMMHHmm");
             // Docker image version
             dockerImageName = "${dockerUsername}/${repositoryName}:${imageVersion}";
-            sh "whoami";
+            sh "docker build -t ${dockerImageName} ./${repositoryName}";
         }
     }
     /*
