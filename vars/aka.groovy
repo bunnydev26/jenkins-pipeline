@@ -9,6 +9,8 @@ def call(gitUsername, repositoryName, dockerUsername) {
             // Pulling the changes to the renderer repository.
             sh "cd ~/kube_renderer && git pull";
             
+            // Setting up the minor build version
+            Date date = new Date()
             // Populating the image version.
             imageVersion = date.format("yyddMMHHmm");
         }
