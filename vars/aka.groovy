@@ -15,9 +15,10 @@ def call(gitUsername, repositoryName, dockerUsername) {
             imageVersion = date.format("yyddMMHHmm");
             // Docker image version
             dockerImageName = "${dockerUsername}/${repositoryName}:${imageVersion}";
+            sh "whoami";
         }
     }
-    
+    /*
     stage('Build and Test') {
         node('master') {
             // Building the docker image.
@@ -55,5 +56,5 @@ def call(gitUsername, repositoryName, dockerUsername) {
             sh "echo 'Deploy on Production'";
             sh "python3 ~/kube_renderer/kube_renderer.py --instance_status production --docker_image_version ${imageVersion} --base_dir ./${repositoryName} | kubectl apply -f -"
         }
-    }
+    }*/
 }
