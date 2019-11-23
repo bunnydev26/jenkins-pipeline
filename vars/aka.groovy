@@ -3,8 +3,8 @@ def call(gitUsername, repositoryName) {
     stage('checkout') {
         node('master') {
             // Clear all the files and directory for the clean build
-            rm -rf *
-            sh "git clone --single-branch -b master https://github.com/${gitUsername}/${repositoryName}.git"
+            sh "rm -rf *";
+            sh "git clone --single-branch -b master https://github.com/${gitUsername}/${repositoryName}.git";
         }
     }
 }
