@@ -53,7 +53,7 @@ def call(gitUsername, repositoryName, dockerUsername) {
     stage('Deploy on Production') {
         node('master') {            
             sh "echo 'Deploy on Production'";
-            sh "python3 ~/kube_renderer/kube_renderer.py --instance_status staging --docker_image_version ${dockerImageName} --base_dir . | kubectl apply -f -"
+            sh "python3 ~/kube_renderer/kube_renderer.py --instance_status production --docker_image_version ${dockerImageName} --base_dir . | kubectl apply -f -"
         }
     }
 }
