@@ -13,6 +13,7 @@ def call(gitUsername, repositoryName, dockerUsername) {
             imageVersion = date.format("yyddMMHHmm");
         }
     }
+    
     stage('Build and Test') {
         node('master') {
             // Building the docker image.
@@ -20,10 +21,10 @@ def call(gitUsername, repositoryName, dockerUsername) {
             sh "echo 'docker build -t ${dockerImageName} .'";
             
             // Runing the test cases on the docker image if it is applicable.
-            sh "echo 'Running test cases'"
+            sh "echo 'Running test cases'";
             
             // Pushing the docker image.
-            sh "echo 'docker push ${dockerImageName}'"
+            sh "echo 'docker push ${dockerImageName}'";
             
         }
     }
