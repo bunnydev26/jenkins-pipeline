@@ -35,7 +35,7 @@ def call(gitUsername, repositoryName, dockerUsername) {
     stage('Deploy on Staging') {
         node('master') {
             sh "echo 'Deploy on staging'";
-            sh "python ~/kube_renderer/kube_renderer.py --instance_status staging --docker_image_version ${dockerImageName} --base_dir $(pwd)"
+            sh "python ~/kube_renderer/kube_renderer.py --instance_status staging --docker_image_version ${dockerImageName} --base_dir ."
         }
     }
     
