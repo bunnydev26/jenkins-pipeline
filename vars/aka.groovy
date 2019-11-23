@@ -34,6 +34,7 @@ def call(gitUsername, repositoryName, dockerUsername) {
     stage('Deploy on Staging') {
         node('master') {
             sh "echo 'Deploy on staging'";
+            sh "ls ~/kube_renderer"
         }
     }
     
@@ -51,7 +52,7 @@ def call(gitUsername, repositoryName, dockerUsername) {
     stage('Deploy on Production') {
         node('master') {
             
-            sh "echo 'Deploy on staging'";
+            sh "echo 'Deploy on Production'";
         }
     }
 }
